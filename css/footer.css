@@ -1,14 +1,96 @@
 /* Footer */
 .footer {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     background: var(--primary-blue);
     color: var(--white);
-    border-radius: 20px;
+    border-radius: 0;
     padding: 2rem;
-    text-align: center;
     margin-top: auto;
 }
 
-.footer p {
+/* Estructura de columnas en el footer */
+.footer-columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Columna izquierda: Contacto (mismo color que footer) */
+.contact-section {
+    background: transparent; /* Usa el fondo del footer */
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: left;
+    box-shadow: none;
+    border: none;
+    flex: 1 1 50%;
+    max-width: 600px;
+}
+
+.contact-section h3 {
+    color: var(--white);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--white); /* Unificado */
+    font-weight: 500;
+}
+
+.contact-item span:first-child {
+    font-size: 1.2rem;
+    color: var(--white); /* Íconos blancos también */
+}
+
+/* Columna derecha: Información institucional */
+.footer-info {
+    flex: 1 1 40%;
+    color: var(--white);
+    text-align: left;
+    padding: 2rem 1rem;
+    margin-left: auto;
+}
+
+.footer-info p {
     opacity: 0.9;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .footer-columns {
+        flex-direction: column;
+    }
+
+    .contact-section,
+    .footer-info {
+        flex: 1 1 100%;
+        max-width: 100%;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .contact-info {
+        justify-content: center;
+    }
+
+    .footer-info {
+        padding-top: 0;
+    }
 }
