@@ -1,0 +1,14 @@
+/* Footer */
+.footer {
+    background: var(--primary-blue);
+    color: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer p {
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}

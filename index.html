@@ -5,10 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agendar Cita - Universidad Técnica Nacional</title>
-    <link rel="stylesheet" href="Style.css" />
+    <link rel="stylesheet" href="./css/Style.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
 </head>
 
 <body>
+
+    <div id="navbar-container"></div>
+
     <div class="container">
         <!-- ENCABEZADO -->
         <header class="header">
@@ -16,16 +21,11 @@
             <h1>Universidad Técnica Nacional</h1>
             <p class="subtitle">Sistema de Citas Académicas</p>
             <p>Agenda tu cita con docentes y personal académico de manera rápida y sencilla</p>
+
+            
         </header>
 
-        <!-- NAVEGACIÓN SIMPLE -->
-        <nav class="nav">
-            <ul>
-                <li><a href="#calendar-container" class="active">Agendar Cita</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#ayuda">Ayuda</a></li>
-            </ul>
-        </nav>
+        
 
         <!-- INFORMACIÓN RÁPIDA -->
         <div class="info-cards">
@@ -88,13 +88,34 @@
             </div>
         </section>
 
-        <!-- PIE DE PÁGINA -->
-        <footer class="footer">
-            <p><strong>Universidad Técnica Nacional</strong></p>
-            <p>&copy; 2025 UTN - Sistema de Citas Académicas</p>
-            <p>Soporte técnico: soporte@utn.ac.cr</p>
-        </footer>
+        <div id="footer-container"></div>
     </div>
 </body>
+
+<script>
+
+    //Llamado al navbar
+    fetch('./Layout/navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-container').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error cargando el navbar:', error);
+        });
+
+    //Llamado al footer
+    fetch('./Layout/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error cargando el footer:', error);
+        });
+
+
+</script>
+
 
 </html>
