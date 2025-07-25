@@ -124,34 +124,40 @@
 <script>
 
    // Llamado al navbar
-    fetch('./Layout/navbar.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar-container').innerHTML = data;
+    // Detectar ruta base
+        const basePath = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
+            ? "./Layout/navbar.html"
+            : "/Citas-Becas-UTN/Layout/navbar.html";
 
-            // ✅ Código para activar el link correcto
-            const currentFile = window.location.pathname.split("/").pop() || "index.html";
+        // Cargar navbar y aplicar "active"
+        fetch(basePath)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
 
-            const links = document.querySelectorAll(".navbar-menu a");
+                // Activar el link correcto
+                const currentFile = window.location.pathname.split("/").pop() || "index.html";
+                const links = document.querySelectorAll(".navbar-menu a");
 
-            links.forEach(link => {
-                const linkHref = link.getAttribute("href").split("/").pop();
+                links.forEach(link => {
+                    const linkHref = link.getAttribute("href").split("/").pop();
 
-                if (
-                    (currentFile === "login.html" || currentFile === "mantenimiento.html") &&
-                    linkHref === "login.html"
-                ) {
-                    link.classList.add("active");
-                } else if (currentFile === "index.html" && linkHref === "index.html") {
-                    link.classList.add("active");
-                } else {
-                    link.classList.remove("active");
-                }
+                    if (
+                        (currentFile === "login.html" || currentFile === "mantenimiento.html") &&
+                        linkHref === "login.html"
+                    ) {
+                        link.classList.add("active");
+                    } else if (currentFile === "index.html" && linkHref === "index.html") {
+                        link.classList.add("active");
+                    } else {
+                        link.classList.remove("active");
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error cargando el navbar:', error);
             });
-        })
-        .catch(error => {
-            console.error('Error cargando el navbar:', error);
-        });
+
 
 
     //Llamado al footer
