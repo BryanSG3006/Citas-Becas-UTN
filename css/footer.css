@@ -9,53 +9,42 @@
     margin-top: auto;
 }
 
-/* Estructura de columnas en el footer */
 .footer-columns {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centra las columnas */
     align-items: flex-start;
-    gap: 2rem;
+    gap: 4rem; /* Más separación entre columnas */
     flex-wrap: wrap;
+    max-width: 1200px; /* Ancho máximo para centrar contenido */
+    margin: 0 auto; /* Centrado horizontal */
+    padding: 0 2rem; /* Espaciado interno */
 }
 
-/* Columna izquierda: Contacto (mismo color que footer) */
-.contact-section {
-    background: transparent; /* Usa el fondo del footer */
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-    text-align: left;
-    box-shadow: none;
-    border: none;
-    flex: 1 1 50%;
-    max-width: 600px;
+.contact-section p {
+    margin-bottom: 1rem; /* Espacio extra entre texto e iconos */
 }
 
-.contact-section h3 {
-    color: var(--white);
-    font-size: 1.6rem;
-    font-weight: 700;
+
+/* Ajuste para columnas */
+.contact-section,
+.footer-info {
+    flex: 1 1 45%; /* Cada columna ocupa casi la mitad */
+    max-width: 500px;
+}
+
+.contact-item i {
+    color: #fff; /* Ícono blanco */
+    font-size: 1.3rem;
+    background: rgba(255,255,255,0.15); /* Sutil fondo */
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
     margin-bottom: 1rem;
 }
 
-.contact-info {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-top: 1.5rem;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--white); /* Unificado */
-    font-weight: 500;
-}
-
-.contact-item span:first-child {
-    font-size: 1.2rem;
-    color: var(--white); /* Íconos blancos también */
+.contact-item i:hover {
+    background: #fff; /* Círculo blanco */
+    color: var(--primary-blue); /* Azul del proyecto */
 }
 
 /* Columna derecha: Información institucional */
@@ -76,6 +65,8 @@
 @media (max-width: 768px) {
     .footer-columns {
         flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .contact-section,
