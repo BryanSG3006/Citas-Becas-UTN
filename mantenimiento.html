@@ -6,9 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel de Mantenimiento</title>
   <link rel="stylesheet" href="./css/mantenimiento.css" />
+  <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
+  <div id="navbar-container"></div>
+
   <div class="container">
     <h1>Panel de Mantenimiento</h1>
 
@@ -37,14 +42,14 @@
 
 
       <div style="text-align: right;">
-        <a href="./index.html" class="cta-button">Inicio</a>
+        <a href="./index.html" class="cta-button">Regresar</a>
       </div>
     </section>
 
 
   </div>
 
-
+<div id="footer-container"></div>
 
 
   <script type="module">
@@ -128,6 +133,45 @@
     window.addEventListener('DOMContentLoaded', cargarCalendarios);
   </script>
 
+  <script>
+
+    //Llamado al navbar
+    fetch('./Layout/navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-container').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error cargando el navbar:', error);
+        });
+
+    //Llamado al footer
+    fetch('./Layout/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error cargando el footer:', error);
+        });
+
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentPath = window.location.pathname; // Ruta actual (ej: /index.html)
+        const links = document.querySelectorAll('.navbar-menu a');
+
+        links.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    });
+</script>
 
 
 </body>

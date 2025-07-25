@@ -56,16 +56,22 @@
         </div>
 
         <!-- SECCIÓN PRINCIPAL DE CALENDARIO -->
-        <div class="calendar-container" id="calendario">
-            <!-- Los calendarios se cargarán aquí dinámicamente -->
-        </div>
+        <section class="calendar-section">
+            <h2 class="calendar-title">Calendarios Disponibles</h2>
+            <p class="calendar-subtitle">Consulta la disponibilidad y agenda tu cita fácilmente</p>
+        
+            <div class="calendar-container" id="calendario">
+                <!-- Los calendarios se cargarán aquí dinámicamente -->
+            </div>
+        </section>
+
 
 
     </div>
     <div id="footer-container"></div>
 </body>
 
-<!-- Firebase SDKs -->
+<!------------------------------- Firebase SDKs ------------------------------------------------->
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -114,6 +120,7 @@
     window.addEventListener('DOMContentLoaded', cargarCalendariosDesdeFirestore);
 </script>
 
+<!------------------------------- Sección de llamados al layout --------------------------------------------->
 <script>
 
     //Llamado al navbar
@@ -138,6 +145,7 @@
 
 
 </script>
+
 
 
 
