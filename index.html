@@ -1,185 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agendar Cita - Universidad Técnica Nacional</title>
     <link rel="stylesheet" href="./css/Style.css" />
     <link rel="stylesheet" href="./css/navbar.css" />
     <link rel="stylesheet" href="./css/footer.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
 
-</head>
-
-<body>
-
+  <body>
+    <!-- Sección para agregar nav-bar -->
     <div id="navbar-container"></div>
-
     <div class="container">
-
-        <!-- ENCABEZADO -->
-        <header class="header">
-            <div class="header-content">
-
-                <!-- Logo en una "card" -->
-                <div class="logo-card">
-                    <img src="./img/logo.jpg" alt="logo" class="logo-img">
-                </div>
-
-                <!-- Texto a la derecha -->
-                <div class="header-text">
-                    <p class="subtitle">Sistema de Atencion de Trabajo Social </p>
-                    <p>Agenda tu cita con trabajo social de manera rápida y sencilla</p>
-                </div>
-
-            </div>
-        </header>
-
-        <!-- INFORMACIÓN RÁPIDA -->
-        <div class="info-cards">
-            <div class="info-card">
-                <div class="info-icon"><i class="fas fa-clock"></i></div>
-                <h3>Horario de Atención</h3>
-                <p>Lunes a Viernes<br>8:00 AM - 5:00 PM</p>
-            </div>
-            <div class="info-card">
-                <div class="info-icon"><i class="fas fa-bolt"></i></div>
-                <h3>Confirmación Inmediata</h3>
-                <p>Recibe confirmación al instante por correo electrónico</p>
-            </div>
-            <div class="info-card">
-                <div class="info-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h3>Recordatorios</h3>
-                <p>Te enviamos recordatorios antes de tu cita programada</p>
-            </div>
+      <!-- ENCABEZADO -->
+      <header class="header">
+        <div class="header-content">
+          <!-- Logo en una "card" -->
+          <div class="logo-card">
+            <img src="./img/logo.jpg" alt="logo" class="logo-img" />
+          </div>
+          <!-- Texto a la derecha -->
+          <div class="header-text">
+            <p class="subtitle">Sistema de Atencion de Trabajo Social</p>
+            <p>Agenda tu cita con trabajo social de manera rápida y sencilla</p>
+          </div>
         </div>
+      </header>
+      <!-- INFORMACIÓN RÁPIDA -->
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-clock"></i></div>
+          <h3>Horario de Atención</h3>
+          <p>Lunes a Viernes<br />8:00 AM - 5:00 PM</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-bolt"></i></div>
+          <h3>Confirmación Inmediata</h3>
+          <p>Recibe confirmación al instante por correo electrónico</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Recordatorios</h3>
+          <p>Te enviamos recordatorios antes de tu cita programada</p>
+        </div>
+      </div>
+      <!-- SECCIÓN PRINCIPAL DE CALENDARIO -->
+      <section class="calendar-section">
+        <h2 class="calendar-title">Calendarios Disponibles</h2>
+        <p class="calendar-subtitle">
+          Consulta la disponibilidad y agenda tu cita fácilmente
+        </p>
 
-        <!-- SECCIÓN PRINCIPAL DE CALENDARIO -->
-        <section class="calendar-section">
-            <h2 class="calendar-title">Calendarios Disponibles</h2>
-            <p class="calendar-subtitle">Consulta la disponibilidad y agenda tu cita fácilmente</p>
-
-            <div class="calendar-container" id="calendario">
-                <!-- Los calendarios se cargarán aquí dinámicamente -->
-            </div>
-        </section>
-
-
-
+        <div class="calendar-container" id="calendario">
+          <!-- Los calendarios se cargarán aquí dinámicamente -->
+        </div>
+      </section>
     </div>
+    <!-- Sección para agregar footer -->
     <div id="footer-container"></div>
-</body>
-
-<!------------------------------- Firebase SDKs ------------------------------------------------->
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyDTV0RzmB-hv2CPbwM-gEbbkcMVsgSurAc",
-        authDomain: "sistema-calendarios-utn.firebaseapp.com",
-        projectId: "sistema-calendarios-utn",
-        storageBucket: "sistema-calendarios-utn.appspot.com",
-        messagingSenderId: "409729685216",
-        appId: "1:409729685216:web:715075faa4dbe615342285",
-        measurementId: "G-G8J5PLE64V"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    const calendarioContainer = document.getElementById('calendario');
-
-    async function cargarCalendariosDesdeFirestore() {
-        const querySnapshot = await getDocs(collection(db, "calendarios"));
-        if (!querySnapshot.empty) {
-            // Oculta el calendario base si hay datos
-            const calendarioBase = calendarioContainer.querySelector('.calendar-wrapper');
-            if (calendarioBase) calendarioBase.style.display = 'none';
-        }
-
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const url = data.url;
-
-            const wrapper = document.createElement('div');
-            wrapper.classList.add('calendar-wrapper');
-
-            const iframe = document.createElement('iframe');
-            iframe.src = url;
-            iframe.loading = "lazy";
-            iframe.title = "Calendario Agregado";
-
-            wrapper.appendChild(iframe);
-            calendarioContainer.appendChild(wrapper);
-        });
-    }
-
-    window.addEventListener('DOMContentLoaded', cargarCalendariosDesdeFirestore);
-</script>
-
-<!------------------------------- Sección de llamados al layout --------------------------------------------->
-<script>
-
-    // Llamado al navbar
-    const isLocal = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
-    const navbarPath = isLocal ? "./Layout/navbar.html" : "/Citas-Becas-UTN/Layout/navbar.html";
-
-    fetch(navbarPath)
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar-container').innerHTML = data;
-
-            // Activar enlace actual
-            const currentPath = window.location.pathname.split("/").pop() || "index.html";
-            const navLinks = document.querySelectorAll(".navbar-menu a");
-
-            navLinks.forEach(link => {
-                const hrefFile = link.getAttribute("href").split("/").pop();
-
-                if ((currentPath === "login.html" || currentPath === "mantenimiento.html") && hrefFile === "login.html") {
-                    link.classList.add("active");
-                } else if (currentPath === "index.html" && hrefFile === "index.html") {
-                    link.classList.add("active");
-                } else {
-                    link.classList.remove("active");
-                }
-            });
-
-            // Activar botón hamburguesa
-            const toggleButton = document.getElementById('navbar-toggle');
-            const menu = document.querySelector('.navbar-menu');
-
-            if (toggleButton && menu) {
-                toggleButton.addEventListener('click', () => {
-                    menu.classList.toggle('show');
-                });
-            } else {
-                console.warn("No se encontró el botón hamburguesa o el menú.");
-            }
-        })
-        .catch(error => console.error("Error cargando el navbar:", error));
-
-
-
-
-
-    //Llamado al footer
-    fetch('./Layout/footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-container').innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Error cargando el footer:', error);
-        });
-
-
-</script>
-
-
-
-
+  </body>
+  <!------------------- Sección de llamados al layout ------------------->
+  <script src="./js/layout.js"></script>
+  <!------------------- Sección de llamados al Firebase ------------------->
+  <script type="module" src="./js/firebaseSDKs.js"></script>
 </html>
