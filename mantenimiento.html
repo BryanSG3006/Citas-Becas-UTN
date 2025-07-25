@@ -136,39 +136,34 @@
   <script>
 
     // Llamado al navbar
-    // Detectar ruta base
-      const basePath = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
-        ? "./Layout/navbar.html"
-        : "/Citas-Becas-UTN/Layout/navbar.html";
+    const isLocal = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
+      const navbarPath = isLocal ? "./Layout/navbar.html" : "/Citas-Becas-UTN/Layout/navbar.html";
 
-      // Cargar navbar y aplicar "active"
-      fetch(basePath)
+      fetch(navbarPath)
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-container').innerHTML = data;
 
-          // Activar el link correcto
-          const currentFile = window.location.pathname.split("/").pop() || "index.html";
-          const links = document.querySelectorAll(".navbar-menu a");
+          // Esperar a que se inserte el navbar en el DOM
+          const currentPath = window.location.pathname.split("/").pop() || "index.html";
 
-          links.forEach(link => {
-            const linkHref = link.getAttribute("href").split("/").pop();
+          const navLinks = document.querySelectorAll(".navbar-menu a");
+
+          navLinks.forEach(link => {
+            const hrefFile = link.getAttribute("href").split("/").pop();
 
             if (
-              (currentFile === "login.html" || currentFile === "mantenimiento.html") &&
-              linkHref === "login.html"
+              (currentPath === "login.html" || currentPath === "mantenimiento.html") && hrefFile === "login.html"
             ) {
               link.classList.add("active");
-            } else if (currentFile === "index.html" && linkHref === "index.html") {
+            } else if (currentPath === "index.html" && hrefFile === "index.html") {
               link.classList.add("active");
             } else {
               link.classList.remove("active");
             }
           });
         })
-        .catch(error => {
-          console.error('Error cargando el navbar:', error);
-        });
+        .catch(error => console.error("Error cargando el navbar:", error));
 
 
 
