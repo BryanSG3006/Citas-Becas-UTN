@@ -97,3 +97,8 @@
         display: flex;
     }
 }
+
+body {
+    padding-top: 100px;
+    /* Ajusta si notas que sigue muy pegado */
+}
