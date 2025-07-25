@@ -15,35 +15,35 @@
     <div id="navbar-container"></div>
 
     <div class="container">
-        
+
         <!-- ENCABEZADO -->
         <header class="header">
             <div class="header-content">
-        
+
                 <!-- Logo en una "card" -->
                 <div class="logo-card">
                     <img src="./img/logo.jpg" alt="logo" class="logo-img">
                 </div>
-        
+
                 <!-- Texto a la derecha -->
                 <div class="header-text">
-                    <p class="subtitle">Sistema de Citas Académicas</p>
-                    <p>Agenda tu cita con docentes y personal académico de manera rápida y sencilla</p>
+                    <p class="subtitle">Sistema de Atencion de Trabajo Social </p>
+                    <p>Agenda tu cita con trabajo social de manera rápida y sencilla</p>
                 </div>
-        
+
             </div>
         </header>
 
 
 
-        
+
 
         <!-- INFORMACIÓN RÁPIDA -->
         <div class="info-cards">
             <div class="info-card">
                 <div class="info-icon">🕒</div>
                 <h3>Horario de Atención</h3>
-                <p>Lunes a Viernes<br>7:00 AM - 5:00 PM</p>
+                <p>Lunes a Viernes<br>8:00 AM - 5:00 PM</p>
             </div>
             <div class="info-card">
                 <div class="info-icon">⚡</div>
@@ -58,28 +58,63 @@
         </div>
 
         <!-- SECCIÓN PRINCIPAL DE CALENDARIO -->
-        <section class="calendar-section" id="calendar-container">
-            <h2>Selecciona tu Cita</h2>
-            <p>
-                Elige el día y horario que mejor se adapte a tu disponibilidad.
-                Podrás agendar citas con docentes, coordinadores académicos y personal de apoyo estudiantil.
-            </p>
+        <div class="calendar-container" id="calendario">
+            <!-- Los calendarios se cargarán aquí dinámicamente -->
+        </div>
 
-            <div class="cta-section">
-                <a href="#calendario" class="cta-button">Ver Disponibilidad</a>
 
-            </div>
-
-            <div class="calendar-container" id="calendario">
-                <iframe
-                    src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ20hcjdAL0gayURPcWrxX9yCklMDYum2rImCmrQf_n5gBxQPhKP0RgzIJI3G_9HRXv22Jce6O71?gv=true"
-                    loading="lazy" title="Sistema de Citas UTN">
-                </iframe>
-            </div>
-        </section>
     </div>
     <div id="footer-container"></div>
 </body>
+
+<!-- Firebase SDKs -->
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDTV0RzmB-hv2CPbwM-gEbbkcMVsgSurAc",
+        authDomain: "sistema-calendarios-utn.firebaseapp.com",
+        projectId: "sistema-calendarios-utn",
+        storageBucket: "sistema-calendarios-utn.appspot.com",
+        messagingSenderId: "409729685216",
+        appId: "1:409729685216:web:715075faa4dbe615342285",
+        measurementId: "G-G8J5PLE64V"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const calendarioContainer = document.getElementById('calendario');
+
+    async function cargarCalendariosDesdeFirestore() {
+        const querySnapshot = await getDocs(collection(db, "calendarios"));
+        if (!querySnapshot.empty) {
+            // Oculta el calendario base si hay datos
+            const calendarioBase = calendarioContainer.querySelector('.calendar-wrapper');
+            if (calendarioBase) calendarioBase.style.display = 'none';
+        }
+
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const url = data.url;
+
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('calendar-wrapper');
+
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.loading = "lazy";
+            iframe.title = "Calendario Agregado";
+
+            wrapper.appendChild(iframe);
+            calendarioContainer.appendChild(wrapper);
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', cargarCalendariosDesdeFirestore);
+</script>
 
 <script>
 
@@ -105,6 +140,7 @@
 
 
 </script>
+
 
 
 </html>
