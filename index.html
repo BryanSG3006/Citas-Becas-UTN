@@ -59,7 +59,7 @@
         <section class="calendar-section">
             <h2 class="calendar-title">Calendarios Disponibles</h2>
             <p class="calendar-subtitle">Consulta la disponibilidad y agenda tu cita fácilmente</p>
-        
+
             <div class="calendar-container" id="calendario">
                 <!-- Los calendarios se cargarán aquí dinámicamente -->
             </div>
@@ -123,15 +123,36 @@
 <!------------------------------- Sección de llamados al layout --------------------------------------------->
 <script>
 
-    //Llamado al navbar
+   // Llamado al navbar
     fetch('./Layout/navbar.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar-container').innerHTML = data;
+
+            // ✅ Código para activar el link correcto
+            const currentFile = window.location.pathname.split("/").pop() || "index.html";
+
+            const links = document.querySelectorAll(".navbar-menu a");
+
+            links.forEach(link => {
+                const linkHref = link.getAttribute("href").split("/").pop();
+
+                if (
+                    (currentFile === "login.html" || currentFile === "mantenimiento.html") &&
+                    linkHref === "login.html"
+                ) {
+                    link.classList.add("active");
+                } else if (currentFile === "index.html" && linkHref === "index.html") {
+                    link.classList.add("active");
+                } else {
+                    link.classList.remove("active");
+                }
+            });
         })
         .catch(error => {
             console.error('Error cargando el navbar:', error);
         });
+
 
     //Llamado al footer
     fetch('./Layout/footer.html')

@@ -7,8 +7,8 @@
   <title>Panel de Mantenimiento</title>
   <link rel="stylesheet" href="./css/mantenimiento.css" />
   <link rel="stylesheet" href="./css/navbar.css" />
-    <link rel="stylesheet" href="./css/footer.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./css/footer.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -49,7 +49,7 @@
 
   </div>
 
-<div id="footer-container"></div>
+  <div id="footer-container"></div>
 
 
   <script type="module">
@@ -135,43 +135,64 @@
 
   <script>
 
-    //Llamado al navbar
+    // Llamado al navbar
     fetch('./Layout/navbar.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar-container').innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Error cargando el navbar:', error);
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-container').innerHTML = data;
+
+        // ✅ Código para activar el link correcto
+        const currentFile = window.location.pathname.split("/").pop() || "index.html";
+
+        const links = document.querySelectorAll(".navbar-menu a");
+
+        links.forEach(link => {
+          const linkHref = link.getAttribute("href").split("/").pop();
+
+          if (
+            (currentFile === "login.html" || currentFile === "mantenimiento.html") &&
+            linkHref === "login.html"
+          ) {
+            link.classList.add("active");
+          } else if (currentFile === "index.html" && linkHref === "index.html") {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
         });
+      })
+      .catch(error => {
+        console.error('Error cargando el navbar:', error);
+      });
+
 
     //Llamado al footer
     fetch('./Layout/footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-container').innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Error cargando el footer:', error);
-        });
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-container').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error cargando el footer:', error);
+      });
 
 
-</script>
+  </script>
 
-<script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname; // Ruta actual (ej: /index.html)
-        const links = document.querySelectorAll('.navbar-menu a');
+      const currentPath = window.location.pathname; // Ruta actual (ej: /index.html)
+      const links = document.querySelectorAll('.navbar-menu a');
 
-        links.forEach(link => {
-            if (link.getAttribute('href') === currentPath) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
+      links.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
     });
-</script>
+  </script>
 
 
 </body>

@@ -20,7 +20,7 @@
 }
 
 .navbar-logo {
-    height: 80px; 
+    height: 80px;
     width: auto;
     display: block;
     cursor: pointer;
@@ -66,6 +66,8 @@
     border-radius: 5px;
     transition: all 0.3s ease;
 }
+
+
 
 /* Responsivo */
 @media (max-width: 768px) {
