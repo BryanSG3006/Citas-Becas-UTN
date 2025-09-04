@@ -358,5 +358,41 @@ body {
         font-size: 1.5rem;
     }
 
+    /* Estilos para el botón de exportación */
+    .export-container {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .export-button {
+        background-color: #2c7be5;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .export-button:hover {
+        background-color: #1a68d1;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .export-button i {
+        font-size: 18px;
+    }
+
+    .export-note {
+        color: #666;
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
 
 }

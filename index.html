@@ -1,71 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agendar Cita - Universidad Técnica Nacional</title>
-    <link rel="stylesheet" href="./css/Style.css" />
-    <link rel="stylesheet" href="./css/navbar.css" />
-    <link rel="stylesheet" href="./css/footer.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-  </head>
 
-  <body>
-    <!-- Sección para agregar nav-bar -->
-    <div id="navbar-container"></div>
-    <div class="container">
-      <!-- ENCABEZADO -->
-      <header class="header">
-        <div class="header-content">
-          <!-- Logo en una "card" -->
-          <div class="logo-card">
-            <img src="./img/logo.jpg" alt="logo" class="logo-img" />
-          </div>
-          <!-- Texto a la derecha -->
-          <div class="header-text">
-            <p class="subtitle">Sistema de Atencion de Trabajo Social</p>
-            <p>Agenda tu cita con trabajo social de manera rápida y sencilla</p>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendar Cita - Universidad Técnica Nacional</title>
+  <link rel="stylesheet" href="./css/Style.css" />
+  <link rel="stylesheet" href="./css/navbar.css" />
+  <link rel="stylesheet" href="./css/footer.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Sección para agregar nav-bar -->
+  <div id="navbar-container"></div>
+  <div class="container">
+    <!-- ENCABEZADO -->
+    <header class="header">
+      <div class="header-content">
+        <!-- Logo en una "card" -->
+        <div class="logo-card">
+          <img src="./img/logo.jpg" alt="logo" class="logo-img" />
         </div>
-      </header>
-      <!-- INFORMACIÓN RÁPIDA -->
-      <div class="info-cards">
-        <div class="info-card">
-          <div class="info-icon"><i class="fas fa-clock"></i></div>
-          <h3>Horario de Atención</h3>
-          <p>Lunes a Viernes<br />8:00 AM - 5:00 PM</p>
-        </div>
-        <div class="info-card">
-          <div class="info-icon"><i class="fas fa-bolt"></i></div>
-          <h3>Confirmación Inmediata</h3>
-          <p>Recibe confirmación al instante por correo electrónico</p>
-        </div>
-        <div class="info-card">
-          <div class="info-icon"><i class="fas fa-mobile-alt"></i></div>
-          <h3>Recordatorios</h3>
-          <p>Te enviamos recordatorios antes de tu cita programada</p>
+        <!-- Texto a la derecha -->
+        <div class="header-text">
+          <p class="subtitle">Sistema de Atencion de Trabajo Social</p>
+          <p>Agenda tu cita con trabajo social de manera rápida y sencilla</p>
         </div>
       </div>
-      <!-- SECCIÓN PRINCIPAL DE CALENDARIO -->
-      <section class="calendar-section">
-        <h2 class="calendar-title">Calendarios Disponibles</h2>
-        <p class="calendar-subtitle">
-          Consulta la disponibilidad y agenda tu cita fácilmente
-        </p>
-
-        <div class="calendar-container" id="calendario">
-          <!-- Los calendarios se cargarán aquí dinámicamente -->
-        </div>
-      </section>
+    </header>
+    <!-- INFORMACIÓN RÁPIDA -->
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-icon"><i class="fas fa-clock"></i></div>
+        <h3>Horario de Atención</h3>
+        <p>Lunes a Viernes<br />8:00 AM - 5:00 PM</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Confirmación Inmediata</h3>
+        <p>Recibe confirmación al instante por correo electrónico</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h3>Recordatorios</h3>
+        <p>Te enviamos recordatorios antes de tu cita programada</p>
+      </div>
     </div>
-    <!-- Sección para agregar footer -->
-    <div id="footer-container"></div>
-  </body>
-  <!------------------- Sección de llamados al layout ------------------->
-  <script src="./js/layout.js"></script>
-  <!------------------- Sección de llamados al Firebase ------------------->
-  <script type="module" src="./js/firebaseSDKs.js"></script>
+    <!-- SECCIÓN PRINCIPAL DE CALENDARIO -->
+    <section class="calendar-section">
+
+      <h2 class="calendar-title">Calendarios Disponibles</h2>
+      <p class="calendar-subtitle">
+        Consulta la disponibilidad y agenda tu cita fácilmente
+      </p>
+      <!-- Botón de exportación -->
+      <div class="export-container">
+        <button id="exportBtn" class="export-button">
+          <i class="fas fa-download"></i> Exportar Citas
+        </button>
+        <p class="export-note">Descarga un archivo con enlaces directos a cada calendario</p>
+      </div>
+
+      <div class="calendar-container" id="calendario">
+        <!-- Los calendarios se cargarán aquí dinámicamente -->
+      </div>
+    </section>
+  </div>
+  <!-- Sección para agregar footer -->
+  <div id="footer-container"></div>
+</body>
+<!------------------- Sección de llamados al layout ------------------->
+<script src="./js/layout.js"></script>
+<!------------------- Sección de llamados al Firebase ------------------->
+<script type="module" src="./js/firebaseSDKs.js"></script>
+
+<script src="./js/calendar-export.js"></script>
+
 </html>
