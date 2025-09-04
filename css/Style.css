@@ -246,6 +246,17 @@ body {
     /* Espacio lateral en pantallas pequeñas */
 }
 
+/* Estilo específico cuando hay un solo calendario */
+.calendar-container.single {
+    display: flex;
+    justify-content: center;
+}
+
+.calendar-container.single .calendar-wrapper {
+    max-width: 900px;
+    width: 100%;
+}
+
 /* Cada calendario */
 .calendar-wrapper {
     background: var(--white);

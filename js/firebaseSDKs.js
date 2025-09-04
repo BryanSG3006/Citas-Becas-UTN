@@ -23,10 +23,12 @@ async function cargarCalendariosDesdeFirestore() {
         if (calendarioBase) calendarioBase.style.display = 'none';
     }
 
+    let totalCalendarios = 0;
+
     querySnapshot.forEach((doc) => {
         const data = doc.data();
         const url = data.url;
-        const nombre = data.nombre || "Calendario " + doc.id; // Usar nombre personalizado si existe
+        const nombre = data.nombre || "Calendario " + doc.id;
 
         const wrapper = document.createElement('div');
         wrapper.classList.add('calendar-wrapper');
@@ -34,11 +36,19 @@ async function cargarCalendariosDesdeFirestore() {
         const iframe = document.createElement('iframe');
         iframe.src = url;
         iframe.loading = "lazy";
-        iframe.title = nombre; // Asignar nombre como título
+        iframe.title = nombre;
 
         wrapper.appendChild(iframe);
         calendarioContainer.appendChild(wrapper);
+
+        totalCalendarios++;
     });
+
+
+    if (totalCalendarios === 1) {
+        calendarioContainer.classList.add('single');
+    }
 }
+
 
 window.addEventListener('DOMContentLoaded', cargarCalendariosDesdeFirestore);

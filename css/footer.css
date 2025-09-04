@@ -7,35 +7,46 @@
     border-radius: 0;
     padding: 2rem;
     margin-top: auto;
+    position: relative;
+    /* 🔴 Agregado */
 }
 
 .footer-columns {
     display: flex;
-    justify-content: center; /* Centra las columnas */
+    justify-content: center;
+    /* Centra las columnas */
     align-items: flex-start;
-    gap: 4rem; /* Más separación entre columnas */
+    gap: 4rem;
+    /* Más separación entre columnas */
     flex-wrap: wrap;
-    max-width: 1200px; /* Ancho máximo para centrar contenido */
-    margin: 0 auto; /* Centrado horizontal */
-    padding: 0 2rem; /* Espaciado interno */
+    max-width: 1200px;
+    /* Ancho máximo para centrar contenido */
+    margin: 0 auto;
+    /* Centrado horizontal */
+    padding: 0 2rem;
+    /* Espaciado interno */
 }
 
 .contact-section p {
-    margin-bottom: 1rem; /* Espacio extra entre texto e iconos */
+    margin-bottom: 1rem;
+    /* Espacio extra entre texto e iconos */
 }
 
 
 /* Ajuste para columnas */
 .contact-section,
 .footer-info {
-    flex: 1 1 45%; /* Cada columna ocupa casi la mitad */
+    flex: 1 1 45%;
+    /* Cada columna ocupa casi la mitad */
     max-width: 500px;
 }
 
 .contact-item i {
-    color: #fff; /* Ícono blanco */
+    color: #fff;
+    /* Ícono blanco */
     font-size: 1.3rem;
-    background: rgba(255,255,255,0.15); /* Sutil fondo */
+    background: rgba(255, 255, 255, 0.15);
+    /* Sutil fondo */
     padding: 10px;
     border-radius: 50%;
     transition: all 0.3s ease;
@@ -43,8 +54,10 @@
 }
 
 .contact-item i:hover {
-    background: #fff; /* Círculo blanco */
-    color: var(--primary-blue); /* Azul del proyecto */
+    background: #fff;
+    /* Círculo blanco */
+    color: var(--primary-blue);
+    /* Azul del proyecto */
 }
 
 /* Columna derecha: Información institucional */
@@ -84,4 +97,53 @@
     .footer-info {
         padding-top: 0;
     }
+}
+
+/* Redes Sociales */
+.social-links {
+    margin-top: 1.2rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #ffffff;
+    /* Rojo YouTube */
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.social-links a:hover {
+    color: #fff;
+    /* Blanco al hacer hover */
+    transform: translateY(-2px);
+}
+
+.social-links i {
+    font-size: 1.4rem;
+}
+
+
+/* Enlace engranaje (Agregar Calendario) */
+.settings-link {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+}
+
+.settings-link a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    color: #ffffff;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
