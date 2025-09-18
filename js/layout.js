@@ -1,5 +1,5 @@
 
-    // Llamado al navbar
+ /*    // Llamado al navbar
     const isLocal = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
     const navbarPath = isLocal ? "./Layout/navbar.html" : "/Citas-Becas-UTN/Layout/navbar.html";
 
@@ -37,7 +37,7 @@
         }, 0);
       })
       .catch(error => console.error("Error cargando el navbar:", error));
-
+ */
 
 
 
